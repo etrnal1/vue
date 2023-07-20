@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app"> {{message | capialize}} <br>
+    <a :href="url"></a><br>
+        {{url}} <br>
+    </div>
+   
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            message:"runonb",
+            url:"v-bind:href 改为:href v-on:click 改为@click"
+        },
+       filters:{
+        capialize:function(value){
+            if(!value){
+                return '' 
+            }else{
+                value=value.toString()
+                return value.charAt(0).toUpperCase()+value.slice(1)
+            }
+        }
+       }
+    })
+</script>
+</html>

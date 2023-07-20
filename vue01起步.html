@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>el 是dom元素中的id</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <h1>site: {{site}}</h1>
+        <h1>url:{{url}}</h1>
+        <h1>{{details()}}</h1>
+        <h2>{{}} 用于输出对象和函数返回值
+            data 用户定义属性,实例属性有message,url,site 
+            methods 用于定义的函数，使用return 返回值
+
+
+
+        </h2>
+        <h3>vue 提供一些有用的实例与方法,他们都带有前缀$</h3>
+    </div>
+</body>
+<script>
+    var data={site:'测试',url:"www.qian.com",site:"千"}
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            message:"hello",
+            url:"www.example.com",
+            site:"百度"
+        },
+        methods:{
+            details:function(){
+                return this.site+"学的不是技术,是梦想"
+            }
+        }
+    }
+       
+    )
+    document.write(vm.$data===data)
+</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if 的操作示范例子</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+        <div id="app">
+            <p v-if="screen"></p>
+            <template v-if="ok">
+               <h1>菜鸟教程</h1>
+               <p>学的是技术</p>
+            </template>
+            <template v-else>
+                <div>
+                    我是false值时才可以进行触发操作
+                </div>
+            </template>
+            <button @click="test">点击显示</button>
+            <div> 
+                <div v-if="type==='A'">
+                    A
+                </div>
+                <div v-else-if="type==='B'">
+                    A
+                </div>
+                <div v-else>
+                    Not a,b,c
+                </div>
+            </div>
+        </div>
+        <script>     
+            new Vue({
+                el:"#app",
+                data:{
+                    screen:true,
+                    ok:true,
+                    type:"C"
+                },
+                methods:{
+                    test:function(){
+                        this.ok=!(this.ok)
+                        console.log(this.ok)
+                    }
+                }
+            })
+        </script>
+</body>
+</html>

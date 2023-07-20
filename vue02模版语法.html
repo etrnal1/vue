@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{5+5}} <br>
+        {{ok ? 'yes':'No'}}
+        <div v-html="message"></div>
+        <!-- {{message}} -->
+        <div>
+            {{chazhi}}
+            {{html}}
+        </div>
+        <p v-if="seen">你看到我了</p>
+        <p v-else>
+            你看不到我了
+        </p>
+        <!-- v-bind HTML属性 -->
+        <pre><a  v-bind:href="url">body</a></pre>
+        <a href="">c</a>
+        <!-- v-on指定可以缩写 -->
+        <a href="" @click="doSomething">v-on</a>
+        <input type="text" name="" id="" v-model="message">
+        <!-- 双向数据绑定 -->
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            ok:true,
+            message:"<h1>菜鸟教程</h1>",
+            chazhi:"{{差值表达式}}",
+            html:"v-html 用来输出html代码",
+            seen:false,
+            url:"http://www.baidu.com"
+        },
+        methods:{
+            doSomething:function(){
+                alert("v-on 可以缩写为@")
+            }
+        }
+    })
+</script>
+</html>

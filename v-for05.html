@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for 使用</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ol>
+            <li v-for="site in sites ">
+                {{site.name}}
+            </li>
+        </ol>
+      <p>模版中使用v-for</p>
+      <template v-for="site in sites">
+        <li>{{site.name}}</li>
+        <li>-----------------</li>
+      </template>
+      <p>key:value使用</p>
+      
+      <template v-for="(value,key,index) in sites">   
+        {{index}}-------{{key}} ---------{{value}}
+      </template>
+      <p>v-for 整数使用</p>
+      <ul><li v-for="n in 10">
+        {{n}}
+      </li></ul>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                sites:[
+                    {name:'google'},
+                    {name:'apple'},
+                    {name:'weibo'},
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

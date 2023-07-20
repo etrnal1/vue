@@ -9,6 +9,7 @@
 <body>
     <div id="app">
         {{message}}
+       <button @click="reverseMessage">反转字符串</button>
     </div>
     
 </body>
@@ -20,7 +21,8 @@
         },
         methods:{
             reverseMessage:function(){
-                this.message=this.message.reverse
+                //操作this.message 这个属性,将每个字符进行分割,反转数组的顺序,join将所有元素拼接到一起
+                this.message=this.message.split('').reverse().join('')
             }
         }
     })
