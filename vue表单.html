@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue表单数据演示</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>input 元素</p>
+        <input v-model="message" placeholder="编辑我">
+        <p>消息是: {{message}}</p>
+        <p>textarea 元素:</p>
+        <p style="white-space:pre">
+            {{message2}}
+        </p>
+        <textarea v-model="message2"></textarea>
+        <p>单选框</p>
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{checked}}</label>
+        <p>多个复选框</p>
+        <input type="checkbox" name="" id="ruo" value="shuju" v-model="checkedName">
+        <input type="checkbox" name="" id="good" value="google" v-model="checkedName">
+        <input type="checkbox" name="" id="name" value="taobao" v-model="checkedName">
+        <p>选取的值为: {{checkedName}}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                message:"hello form表单使用",
+                message2:"我是数据",
+                checked:false,
+                checkedName:[]
+            }
+        })
+    </script>
+</body>
+</html>

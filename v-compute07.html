@@ -8,12 +8,94 @@
 </head>
 <body>
     <div id="app">
-        <p>计算属性computed 用于处理复杂逻辑</p>
+        <p>计算属性computed 用于处理复杂逻辑{{message}}</p>
+
+        <p>计算反转后的字符串{{reversedMessage}}</p>
+        <p>computed vs methods
+            computed 是基于依赖缓存,使用methods,在重新渲染是,函数总会被调用
+
+            computed 使用性能更好
+        </p>
+        <p>{{site}}</p>
+        <p>computer 属性的优势将业务逻辑抽离出来,实现响应式,</p>
+        <p>{{com}}</p>
     </div>
     <script>
-        new Vue({
+      var vm=  new Vue({
+            el:'#app',
+            data:{
+                message:'rubbo',
+                name:'google',
+                url:'http://www.baidu.com',
+                com:`调用 getter 和 setter 的方式和调用普通的 computed 属性一样:
 
+                获取 site 的值就是调用 getter:
+             
+                console.log(this.site) 
+              
+                
+                设置 site 的值就是调用 setter:
+                
+              
+                this.site = '新的值'
+                
+               
+                
+                调用方式和普通数据属性一样,但我们通过定义 getter 和 setter 实现了自定义的逻辑。
+                
+                举个完整的例子:
+                
+             
+                data() {
+                  return {
+                    name: 'RUNOOB',
+                    url: 'https://www.runoob.com'
+                  }
+                }
+                
+                computed: {
+                  site: {
+                    get() {
+                      return this.name + ' ' + this.url
+                    },
+                    set(newValue) {
+                      const names = newValue.split(' ')
+                      this.name = names[0]
+                      this.url = names[names.length - 1]
+                    }
+                  }  
+                }
+              
+                // 调用 getter 读取 site
+                console.log(this.site) 
+                
+                // 调用 setter 修改 site
+                this.site = '新站点 新网址' 
+                
+                // 再次调用 getter 读取更新后的 site
+                console.log(this.site)
+                ```
+                
+                所以调用方式和普通属性无异,但通过定义 getter 和 setter 实现了自定义的读取和设置逻辑。`
+            },
+            computed:{
+                reversedMessage:function(){
+                    return this.message.split('').reverse().join('')
+                },
+                site:{
+                    get:function(){
+                        return this.name+' '+this.url
+                    },
+                    set:function(newValue){
+                        var names=newValue.split('')
+                        this.name=names[0],
+                        this.url=names[names.length-1]
+
+                        }
+                }
+            }
         })
+    vm.site='默默-------http'
     </script>
 </body>
 </html>

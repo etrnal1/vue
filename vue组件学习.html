@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue js 定义组件[component]</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <test></test>
+    </div>
+    <script>
+        Vue.component('test',{
+            template:'<h1>自定义组件!</h1>'
+        })
+        new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>
