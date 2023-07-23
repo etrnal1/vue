@@ -1,10 +1,20 @@
+# vue
+## vue 常用词汇
 component
-
 data
 methods 
-
 template 
 $emit
+increment
+v-on  简写 @
+v-bind 简写:
+
+fillter
+
+<router-link to="/foo">Go to Foo</router-link>
+        <router-link to="/bar">Go to bar</router-link>
+        <router-view></router-view>
+## emit
 
 在 Vue.js 中，`$emit` 是一个实例方法，用于触发一个自定义事件。这种方法的常见用途是在子组件中触发一个事件，然后父组件可以监听并对这个事件进行响应。
 
