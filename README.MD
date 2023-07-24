@@ -21,7 +21,7 @@ fillter
 
 这是一个 `$emit` 的基本用法：
 ## vue 数据示范
-
+https://www.halove.net/ming/english2.php
 Vue 构造器中有一个el 参数，它是 DOM 元素中的 id
 data 用于定义属性，实例中有三个属性分别为：site、url、alexa。
 methods 用于定义的函数，可以通过 return 来返回函数值。
@@ -95,3 +95,107 @@ increHandler:function(){
 https://unpkg.com/vue-router/dist/vue-router.js
 ## 下载相关js数据
 `wget https://unpkg.com/vue-router/dist/vue-router.js`
+
+
+## 自己搭建的gitlab
+sudo docker pull registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh 
+
+sudo docker run --detach --publish 8443:443 --publish 8090:80  --publish 8022:22  --name gitlab   --restart always --hostname 127.0.0.1  -v /Users/mac/software/gitlab/etc:/etc/gitlab -v /Users/mac/software/gitlab/logs:/var/log/gitlab  -v /Users/mac/software/gitlab/Users/mac:/var/opt/gitlab -v /etc/localtime:/etc/localtime:ro --privileged=true registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh
+
+## 账号密码
+root Woaini33279
+
+
+要将 Docker 镜像部署在内网中，你通常需要以下步骤：
+
+1. **在可以访问外网的机器上下载镜像**
+
+    在可以访问外网的机器上，使用 `docker pull` 命令下载你需要的 Docker 镜像：
+
+    ```bash
+    docker pull registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh
+    ```
+
+2. **保存镜像到一个文件**
+
+    使用 `docker save` 命令将 Docker 镜像保存为一个 tar 文件：
+
+    ```bash
+    docker save -o gitlab-ce-zh.tar registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh
+    ```
+
+    这将会创建一个名为 `gitlab-ce-zh.tar` 的文件，该文件包含了 Docker 镜像的所有层。
+
+3. **将镜像文件复制到内网机器**
+
+    将 `gitlab-ce-zh.tar` 文件复制到你的内网机器上。你可以使用任何传输文件的方式，例如 SCP、FTP、物理介质等。
+
+4. **在内网机器上加载镜像**
+
+    在内网机器上，使用 `docker load` 命令从 tar 文件中加载 Docker 镜像：
+
+    ```bash
+    docker load -i gitlab-ce-zh.tar
+    ```
+
+5. **在内网机器上运行 Docker 容器**
+
+    使用 `docker run` 命令在内网机器上运行 Docker 容器。请确保你的命令中的所有路径和设置都是正确的，例如你的 GitLab 配置文件、数据和日志的存储位置。
+
+    ```bash
+    sudo docker run --detach --publish 8443:443 --publish 8090:80  --publish 8022:22  --name gitlab   --restart always --hostname 127.0.0.1  -v /path/to/gitlab/etc:/etc/gitlab -v /path/to/gitlab/logs:/var/log/gitlab  -v /path/to/gitlab/Users/mac:/var/opt/gitlab -v /etc/localtime:/etc/localtime:ro --privileged=true registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh
+    ```
+
+    在这个命令中，你需要替换 `your-hostname` 和 `/path/to/gitlab/` 等为你实际的主机名和路径。
+
+    <!-- 原版 -->
+    sudo docker run --detach --publish 8443:443 --publish 8090:80  --publish 8022:22  --name gitlab   --restart always --hostname 127.0.0.1  -v /Users/mac/software/gitlab/etc:/etc/gitlab -v /Users/mac/software/gitlab/logs:/var/log/gitlab  -v /Users/mac/software/gitlab/data:/var/opt/gitlab -v /etc/localtime:/etc/localtime:ro --privileged=true registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh  
+    
+    启动完以后 页面无法正常访问，我该如何排查
+
+
+    ## 安装针对mac M2,m1版本的镜像
+    docker pull ozhrm8gx.mirror.aliyuncs.com/yrzr/gitlab-ce-arm64v8
+
+
+        docker pull ozhrm8gx.mirror.aliyuncs.com/yrzr/gitlab-ce-arm64v8
+
+
+        docker run -itd -p 9980:80 -p 9922:22 -v /usr/local/gitlab-test/etc:/etc/gitlab -v /usr/local/gitlab-test/log:/var/log/gitlab -v /usr/local/gitlab-test/opt:/var/opt/gitlab --privileged=true --name gitlab-test gitlab/gitlab-ce
+        
+
+        您的SQL查询有几个问题，这可能是导致语法错误的原因。我将逐一地对这些问题进行解析，然后提供一个修改后的查询语句。
+
+1. **`distinct(device_name)`**：`DISTINCT`通常用来消除结果集中的重复行。在`SELECT`子句中，`DISTINCT`应该放在所有列名之前，而不是单列。在此，您似乎想要得到唯一的`device_name`，但是在`SELECT`子句中如此使用`DISTINCT`是不正确的。
+
+2. **`GROUP BY caputure_time`**：在`GROUP BY`子句中，您应该只包含那些您希望在结果集中进行分组的列。在您的查询中，您想要根据`caputure_time`进行分组，但是您也在`SELECT`子句中包含了`name`和`device_name`。如果这些列在每个`caputure_time`下都具有唯一值，那么您需要在`GROUP BY`子句中包含这些列。
+
+3. **正则表达式**：在MySQL中，`REGEXP`是一个比较运算符，用于匹配正则表达式。您的正则表达式看起来是正确的，前提是您想要匹配包含"进"或"出"的`doorway`。
+
+考虑到上述问题，以下是修改后的查询：
+
+```sql
+SELECT name, device_name, caputure_time
+FROM faceregont 
+WHERE name ='梁旭' AND doorway REGEXP '进|出' 
+GROUP BY name, device_name, caputure_time
+ORDER BY caputure_time
+```
+
+这个查询将返回`name`为"梁旭"，且`doorway`包含"进"或"出"的每一行，每行包含唯一的`name`，`device_name`，和`caputure_time`组合。结果将按`caputure_time`排序。
+    
+如果您希望获取每天的最早和最晚时间，您可以使用`DATE()`函数将`caputure_time`转换为日期，然后使用`MIN()`和`MAX()`函数来获得每天的最早和最晚的时间。以下是一个示例的SQL查询语句：
+
+```sql
+SELECT 
+  DATE(caputure_time) as date,
+  MIN(caputure_time) as earliest_time,
+  MAX(caputure_time) as latest_time
+FROM faceregont
+GROUP BY DATE(caputure_time)
+ORDER BY date;
+```
+
+这个查询首先将`caputure_time`转换为日期，然后按日期分组。对于每个日期，查询返回最早的`caputure_time`（即该日期的最早时间）和最晚的`caputure_time`（即该日期的最晚时间）。最后，结果按日期排序。
+
+请注意，这个查询假设您的`caputure_time`字段是一个时间戳或日期时间类型的列。如果不是，您可能需要先将该字段转换为适当的类型再进行这些操作。
