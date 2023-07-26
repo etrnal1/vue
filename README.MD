@@ -162,7 +162,7 @@ root Woaini33279
 
 
         docker run -itd -p 9980:80 -p 9922:22 -v /usr/local/gitlab-test/etc:/etc/gitlab -v /usr/local/gitlab-test/log:/var/log/gitlab -v /usr/local/gitlab-test/opt:/var/opt/gitlab --privileged=true --name gitlab-test gitlab/gitlab-ce
-        
+
 
         您的SQL查询有几个问题，这可能是导致语法错误的原因。我将逐一地对这些问题进行解析，然后提供一个修改后的查询语句。
 
@@ -199,3 +199,23 @@ ORDER BY date;
 这个查询首先将`caputure_time`转换为日期，然后按日期分组。对于每个日期，查询返回最早的`caputure_time`（即该日期的最早时间）和最晚的`caputure_time`（即该日期的最晚时间）。最后，结果按日期排序。
 
 请注意，这个查询假设您的`caputure_time`字段是一个时间戳或日期时间类型的列。如果不是，您可能需要先将该字段转换为适当的类型再进行这些操作。
+
+## npm 
+
+build   项目构建webpack 代码
+
+config  配置目录,包括端口号
+
+Node_modules npm加载的项目依赖模块
+
+src     这是我们要开发的目录
+
+static  静态资源 
+
+test   初始test 目录
+
+  index
+
+Package.json 项目配置文档
+
+README.md
