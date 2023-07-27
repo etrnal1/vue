@@ -1,3 +1,7 @@
+---
+typora-root-url: ./image
+---
+
 # vue
 ## vue 常用词汇
 component
@@ -219,3 +223,133 @@ test   初始test 目录
 Package.json 项目配置文档
 
 README.md
+
+.browserslistic 配置浏览器的兼容性
+gitignore 配置git忽略文件,用于告诉git哪些文件不需要被添加到版本管理中,例如项目的node_modules依赖包的代码,该文件会占用很大的内存,一般不会提交到远程仓库,提交的代码时会忽略该文件夹
+
+1. Node_modules
+
+  
+
+1. package.json
+
+## 文件结构
+
+template HTML 元素内容,用于定义Vue.js组件的
+
+​     模版内容,数据渲染,UI组件等
+
+Script 页面业务逻辑，比如生命周期,函数,组件,监听
+
+style  样式层
+
+## 项目入口
+
+Vue.js 是单页面应用
+
+开发环境运行项目执行npm run serve,该命令行是package.json文件script下的serve,
+
+
+
+入口 npm run serve 开始执行src/main.js 文件,在main.js文件创建Vue.js实例,并引入根组件App.vue.然后再Vue.js实例中注入router和store,最后调用.mount方法将Vue.js实例挂载到index.html文件中id为App的DOM元素挂载点
+
+
+
+## 路由
+
+Import Home from "../views/Home.vue"
+
+- import 导入
+- from  来源于
+- @ 符号指向src 目录
+
+
+
+### 项目初始化配置
+
+Src/views/Home.vue组件,看看在浏览器有什么变化
+
+### 配置vue.config.js
+
+Vue.config.js 是一个可选的配置文件，
+
+### 使用element Plus组件库
+
+对于Web应用来说,只使用原生的DOM元素,往往无法满足项目的需求,如input,select,textatea等,因为他们的功能不够强大,在开发过程使用原生dom元素会非常吃力,不仅要实现开发元素之间的交互,还要让元素的Ui效果达到统一,使用第三方UI 是首选项,引入组件的方式,完整导入,按需自动导入,按需手动导入,
+
+- ## 完整导入
+
+- ## 按需自动导入
+
+- 按需手动导入
+
+ Elment Plus 组件很多,如果导入的组件非常多,会导致main.js文件代码混乱,为了更好地管理element Plus 组件,可以将组件作为独立的文件,将不同的功能剥离出来
+
+
+
+src/main.js
+
+`import ElementPlus from 'elment-plus'`
+
+`import 'element-plus/dist/index.css'`
+
+​									
+
+- 遇见问题 npm 不能安装element-plus
+
+  ```js
+  pm ERR! code ERESOLVE
+  npm ERR! ERESOLVE unable to resolve dependency tree
+  npm ERR!
+  npm ERR! While resolving: vue_test@1.0.0
+  npm ERR! Found: vue@2.7.14
+  npm ERR! node_modules/vue
+  npm ERR!   vue@"^2.5.2" from the root project
+  npm ERR!
+  npm ERR! Could not resolve dependency:
+  npm ERR! peer vue@"^3.2.0" from element-plus@2.3.8
+  npm ERR! node_modules/element-plus
+  npm ERR!   element-plus@"*" from the root project
+  npm ERR!
+  npm ERR! Fix the upstream dependency conflict, or retry
+  npm ERR! this command with --force or --legacy-peer-deps
+  npm ERR! to accept an incorrect (and potentially broken) dependency resolution.
+  npm ERR!
+  npm ERR!
+  npm ERR! For a full report see:
+  npm ERR! /Applications/MxSrvs/cache/nodejs/_logs/2023-07-26T05_24_21_847Z-eresolve-report.txt
+  
+  npm ERR! A complete log of this run can be found in: /Applications	/MxSrvs/cache/nodejs/_logs/2023-07-26T05_24_21_847Z-debug-0.log
+  
+  
+  
+  
+  ```
+
+  
+
+sudo npm install vue@3
+sudo npm install element-plus --save
+
+## vue  ui 
+
+![Snipaste_2023-07-26_14-03-49](/Snipaste_2023-07-26_14-03-49.png)
+
+
+
+
+
+### vue 运行
+
+
+
+
+
+![vue运行](file:../vue/image/vue%E8%BF%90%E8%A1%8C.png)
+
+## 路由 【将组件(components)映射到路由路径(routes)】
+
+
+
+
+
