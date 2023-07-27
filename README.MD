@@ -353,3 +353,37 @@ sudo npm install element-plus --save
 
 
 
+### vu3 打包
+
+cnpm run build 会在vue目录下生成dist 目录,该目录一般包含index.html文件以及static目录,static目录包含了静态文件js,css以及图片目录images 如果有图片的话
+
+build  项目构建 webpack 代码
+
+config 配置目录,包括端口号鞥
+
+Node_modules npm 加载的项目依赖模块
+
+Src 开发的目录
+
+​	  assets 放置图片logo
+
+​      components 目录放的组件
+
+​     App.vue 项目入口文件,可以直接写组件在里面
+
+   main.js 项目的核心文件
+
+index.css 样式文件
+
+static 静态资源
+public 公共资源
+
+test 初始测试目录,可删除
+
+.xxxx文件 配置文件 语法配置,git配置
+
+Index.html 项目配置文件
+
+README.md 项目的说明文档
+
+dist npm run build 命令会生成该目录
