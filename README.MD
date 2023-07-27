@@ -348,11 +348,6 @@ sudo npm install element-plus --save
 ![vue运行](file:../vue/image/vue%E8%BF%90%E8%A1%8C.png)
 
 ## 路由 【将组件(components)映射到路由路径(routes)】
-
-
-
-
-
 ### vu3 打包
 
 cnpm run build 会在vue目录下生成dist 目录,该目录一般包含index.html文件以及static目录,static目录包含了静态文件js,css以及图片目录images 如果有图片的话
