@@ -382,3 +382,38 @@ Index.html 项目配置文件
 README.md 项目的说明文档
 
 dist npm run build 命令会生成该目录
+
+### es6 语法规范
+
+Es6 模块化
+
+包管理器
+
+原型,原型链
+
+数组常用方法
+
+ 过滤数组,加工数组
+
+axios
+
+promise
+
+
+
+### node
+
+  Node.js 运行es6
+
+#### Webpack
+
+​     是一个现代Javascript 应用程序的静态模块打包器,当webpack处理应用程序时,它会递归底构建一个依赖关系图
+
+ 入口
+
+输出
+
+Loader
+
+插件(plugins)
+
