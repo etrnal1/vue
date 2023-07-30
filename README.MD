@@ -417,3 +417,162 @@ Loader
 
 插件(plugins)
 
+## es5
+
+错误信息 "Cannot use import statement outside a module" 在 Node.js 中试图使用 ECMAScript 模块（ESM）时是一个常见的错误。
+
+默认情况下，Node.js 将 `.js` 扩展名的文件视为 CommonJS 模块。`import` 语句是 ECMAScript 模块的一部分，不适用于 CommonJS 模块。所以当你在 `.js` 文件中使用 `import`，Node.js 就会抛出 "Cannot use import statement outside a module" 的错误。
+
+你有几种不同的选项来解决这个问题：
+
+1. **将你的文件重命名为 `.mjs`**：Node.js 默认将 `.mjs` 文件视为 ESM。所以你可以将你的文件从 `.js` 重命名为 `.mjs`，它应该就可以工作了。
+
+```bash
+mv es6mokuaiimport.js es6mokuaiimport.mjs
+```
+
+然后你可以用 Node.js 运行文件：
+
+```bash
+node es6mokuaiimport.mjs
+```
+
+2. **使用 `--experimental-modules` 标志**：你可以通过使用 `--experimental-modules` 标志告诉 Node.js 将 `.js` 文件视为 ESM。
+
+```bash
+node --experimental-modules es6mokuaiimport.js
+```
+
+3. **在你的 `package.json` 中设置 `"type": "module"`**：告诉 Node.js 将 `.js` 文件视为 ESM 的另一种方式是在你的 `package.json` 中包含 `"type": "module"`。
+
+```json
+{
+  "name": "my-package",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "es6mokuaiimport.js"
+}
+```
+
+然后你可以用 Node.js 运行文件：
+
+```bash
+node es6mokuaiimport.js
+```
+
+请注意，使用 ECMAScript 模块在 Node.js 中仍然是实验性的，未来版本中的行为可能会发生变化。
+
+## Es6
+
+### let [es6 新增关键字 let 和const]
+
+```
+//let 只能声明一次,var只能声明全部  var 变量提升,let没有
+```
+
+### const 声明一个常量不能修改
+
+### for
+
+#### 下面的for循环代码为什么输出10
+
+这是因为JavaScript采用的是基于事件循环的并发模型，这种模型中，一些代码（如 `setTimeout`，`setInterval` 或 AJAX 请求等）是异步执行的，这意味着它们不会立即执行，而是在当前执行栈中的所有同步代码执行完毕后才会执行。
+
+// 在你的代码中，`for` 循环是同步代码，而 `setTimeout` 是异步代码。因此，`for` 循环会首先完全执行，然后所有的 `setTimeout` 回调才会执行。由于 `setTimeout` 没有设置延迟时间，它会尽快执行，但总是在所有同步代码之后。
+
+// 简单来说，`setTimeout` 延迟的不仅仅是它的回调函数，还包括所有的同步代码。这就是为什么在这个例子中，所有的 `setTimeout` 都在 `for` 循环结束后才执行的原因。
+
+// 下面是一个简单的时间线来描述这个过程：
+
+// 1. `for` 循环开始执行。
+
+// 2. 每次迭代，都会调度一个 `setTimeout`，但是这些 `setTimeout` 的回调并不会立即执行，而是被添加到一个队列中等待执行。
+
+// 3. `for` 循环结束后，`i` 的值变为 `10`。
+
+// 4. 此时，所有的同步代码都已经执行完毕，事件循环开始处理队列中的 `setTimeout` 回调。
+
+// 5. 每个 `setTimeout` 回调函数访问变量 `i`，此时 `i` 的值已经是 `10`。
+
+// 这就是为什么所有的 `setTimeout` 回调都打印出 `10` 的原因。
+
+```js
+for(let i =0;i<10;i++){
+    setTimeout(function(){
+        console.log("let 函数的使用",i)
+    })
+
+}
+```
+
+
+
+### array
+
+- Array.from
+- array.like
+- mapFn
+- thisArg
+- 转换map
+- 转换set
+- 转换字符串
+- find [查找返回符合条件的第一个]
+- findIndex
+- fill
+- CopyWithin()
+- Entries [遍历键值对]
+- keys 遍历键名
+- values 遍历值
+- includes 包含某值
+- Flat() 嵌套数组转换为一堆数组
+- flatMap() 先对数组中每个元素进行处理，在对数组执行flat()方法
+
+### func
+
+### class
+
+### Import 与export
+
+### mjs
+
+### 异步编程  promise 
+
+[有三种状态] pending  fulfilled rejected
+
+
+
+ promise  对象只有 : 从pending 变为fulfilled 和从pending 变为rejected的状态更改,只要处于fulfilled 和rejected ,状态就不会再变了即resolved(已经定型)
+
+#### then 方法
+
+then 方法接收两个函数作为参数,第一个参数是Promise执行成功时回调,第二个参数是Promise执行失败时的回调,两个函数只有一个被调用
+
+````js
+这段代码创建了两个 Promise 对象 `p1` 和 `p2`，然后使用 `then` 方法来处理这两个 Promise 的结果。
+
+在这段代码中，`p1` 和 `p2` 都是 Promise 对象。Promise 是 JavaScript 中的一种内置对象，它用于处理异步操作。Promise 对象表示一个异步操作的最终完成（或失败）及其结果值。
+
+Promise 对象接受一个函数作为参数，这个函数接收两个参数，通常命名为 `resolve` 和 `reject`。`resolve` 函数在异步操作成功时被调用，并接收异步操作的结果作为参数；`reject` 函数在异步操作失败时被调用，并接收错误信息作为参数。
+
+```javascript
+const p1 = new Promise(function(resolve, reject){
+    resolve('success2');
+    reject('reject');
+});
+```
+
+在这个示例中，`resolve` 函数被调用并传入 `success2` 作为结果。然后 `reject` 函数被调用，但是在 Promise 中，一旦调用了 `resolve` 或 `reject`，Promise 的状态就会改变，且无法再次改变。所以在这个例子中，`reject('reject')` 这行代码实际上并没有任何效果，因为 `resolve` 已经被调用过了。
+
+接下来，`then` 方法被调用来处理 Promise 的结果。`then` 方法接受两个参数，两个参数都是函数。第一个函数是 Promise 被解决（即异步操作成功）时的回调函数，第二个函数是 Promise 被拒绝（即异步操作失败）时的回调函数。
+
+```javascript
+p1.then(function(value){console.log(value)});
+```
+
+在这个示例中，只提供了第一个参数，即 Promise 被解决时的回调函数。所以当 `p1` 被解决时，会输出 `success2`。
+
+同样，在 `p2` 中，虽然调用了 `reject('reject')`，但因为 `resolve('success3')` 先被调用，所以 `p2` 也是解决的状态，会输出 `success3`。
+
+这段代码中的一个重要点是，即使 `reject` 函数被调用，但是由于 `resolve` 函数先被调用，Promise 的状态已经改变，因此 `reject` 的调用不会改变 Promise 的状态。这就是为什么这段代码会输出 `success2` 和 `success3`，而不是抛出任何错误的原因。
+````
+
