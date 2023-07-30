@@ -1,161 +1,54 @@
----
 typora-root-url: ./image
----
 
-# vue
-## vue 常用词汇
-component
-data
-methods 
-template 
-$emit
-increment
-v-on  简写 @
-v-bind 简写:
-
-fillter
-`
-<router-link to="/foo">Go to Foo</router-link>
-        <router-link to="/bar">Go to bar</router-link>
-        <router-view></router-view>
-`
-## vue $emit
-
-在 Vue.js 中，`$emit` 是一个实例方法，用于触发一个自定义事件。这种方法的常见用途是在子组件中触发一个事件，然后父组件可以监听并对这个事件进行响应。
-
-这是一个 `$emit` 的基本用法：
-## vue 数据示范
-https://www.halove.net/ming/english2.php
-Vue 构造器中有一个el 参数，它是 DOM 元素中的 id
-data 用于定义属性，实例中有三个属性分别为：site、url、alexa。
-methods 用于定义的函数，可以通过 return 来返回函数值。
-{{ }} 用于输出对象属性和函数返回值。
-
-`
-var data={site:'测试',url:"www.qian.com",site:"千"}
-    var vm=new Vue({
-        el:"#app",
-        data:{
-            message:"hello",
-            url:"www.example.com",
-            site:"百度"
-        },
-        methods:{
-            details:function(){
-                return this.site+"学的不是技术,是梦想"
-            }
-        }
-    }
-       
-    )
-`
-
-
-```javascript
-this.$emit('my-event', payload1, payload2, ...)
-```
-
-在上述代码中，`'my-event'` 是自定义事件的名称，`payload1`、`payload2` 等是可选的数据，可以传递给监听这个事件的处理器。
-
-在你给出的代码示例中，`button-counter` 组件在被点击时会触发一个名为 `'increment'` 的事件：
-
-```javascript
-increHandler:function(){
-    this.counter += 1
-    this.$emit('increment')
-}
-```
-
-然后，在父组件中，可以使用 `v-on` 指令（或其缩写 `@`）来监听这个事件，并指定一个处理器：
-
-```html
-<button-counter @increment="ins"></button-counter>
-```
-
-在这个例子中，当 `increment` 事件发生时，会调用 `ins` 方法，该方法将总数 `total` 增加 1。
-
-总的来说，`$emit` 是 Vue.js 中实现自定义事件和组件间通信的关键工具。
-
-## vue 指定
-
-### v-if
-
-#### v-elseif
-
-#### v-else
-
-### v-show
-
-### v-on [简写为@]
-
-### v-bind [简写为:]
-
-### V-html [渲染原生html文件]
-
-### v-model [适用于表单输入框]
-
-## vue 路由
-
-https://unpkg.com/vue-router/dist/vue-router.js
-## 下载相关js数据
-`wget https://unpkg.com/vue-router/dist/vue-router.js`
-
-
-## 自己搭建的gitlab
-sudo docker pull registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh 
-
-sudo docker run --detach --publish 8443:443 --publish 8090:80  --publish 8022:22  --name gitlab   --restart always --hostname 127.0.0.1  -v /Users/mac/software/gitlab/etc:/etc/gitlab -v /Users/mac/software/gitlab/logs:/var/log/gitlab  -v /Users/mac/software/gitlab/Users/mac:/var/opt/gitlab -v /etc/localtime:/etc/localtime:ro --privileged=true registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh
-
-## 账号密码
-root Woaini33279
+# docker 安装gitlab和打包gitlab
 
 
 要将 Docker 镜像部署在内网中，你通常需要以下步骤：
 
 1. **在可以访问外网的机器上下载镜像**
 
-    在可以访问外网的机器上，使用 `docker pull` 命令下载你需要的 Docker 镜像：
+   在可以访问外网的机器上，使用 `docker pull` 命令下载你需要的 Docker 镜像：
 
-    ```bash
-    docker pull registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh
-    ```
+   ```bash
+   docker pull registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh
+   ```
 
 2. **保存镜像到一个文件**
 
-    使用 `docker save` 命令将 Docker 镜像保存为一个 tar 文件：
+   使用 `docker save` 命令将 Docker 镜像保存为一个 tar 文件：
 
-    ```bash
-    docker save -o gitlab-ce-zh.tar registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh
-    ```
+   ```bash
+   docker save -o gitlab-ce-zh.tar registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh
+   ```
 
-    这将会创建一个名为 `gitlab-ce-zh.tar` 的文件，该文件包含了 Docker 镜像的所有层。
+   这将会创建一个名为 `gitlab-ce-zh.tar` 的文件，该文件包含了 Docker 镜像的所有层。
 
 3. **将镜像文件复制到内网机器**
 
-    将 `gitlab-ce-zh.tar` 文件复制到你的内网机器上。你可以使用任何传输文件的方式，例如 SCP、FTP、物理介质等。
+   将 `gitlab-ce-zh.tar` 文件复制到你的内网机器上。你可以使用任何传输文件的方式，例如 SCP、FTP、物理介质等。
 
 4. **在内网机器上加载镜像**
 
-    在内网机器上，使用 `docker load` 命令从 tar 文件中加载 Docker 镜像：
+   在内网机器上，使用 `docker load` 命令从 tar 文件中加载 Docker 镜像：
 
-    ```bash
-    docker load -i gitlab-ce-zh.tar
-    ```
+   ```bash
+   docker load -i gitlab-ce-zh.tar
+   ```
 
 5. **在内网机器上运行 Docker 容器**
 
-    使用 `docker run` 命令在内网机器上运行 Docker 容器。请确保你的命令中的所有路径和设置都是正确的，例如你的 GitLab 配置文件、数据和日志的存储位置。
+   使用 `docker run` 命令在内网机器上运行 Docker 容器。请确保你的命令中的所有路径和设置都是正确的，例如你的 GitLab 配置文件、数据和日志的存储位置。
 
-    ```bash
-    sudo docker run --detach --publish 8443:443 --publish 8090:80  --publish 8022:22  --name gitlab   --restart always --hostname 127.0.0.1  -v /path/to/gitlab/etc:/etc/gitlab -v /path/to/gitlab/logs:/var/log/gitlab  -v /path/to/gitlab/Users/mac:/var/opt/gitlab -v /etc/localtime:/etc/localtime:ro --privileged=true registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh
-    ```
+   ```bash
+   sudo docker run --detach --publish 8443:443 --publish 8090:80  --publish 8022:22  --name gitlab   --restart always --hostname 127.0.0.1  -v /path/to/gitlab/etc:/etc/gitlab -v /path/to/gitlab/logs:/var/log/gitlab  -v /path/to/gitlab/Users/mac:/var/opt/gitlab -v /etc/localtime:/etc/localtime:ro --privileged=true registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh
+   ```
 
-    在这个命令中，你需要替换 `your-hostname` 和 `/path/to/gitlab/` 等为你实际的主机名和路径。
+   在这个命令中，你需要替换 `your-hostname` 和 `/path/to/gitlab/` 等为你实际的主机名和路径。
 
-    <!-- 原版 -->
-    sudo docker run --detach --publish 8443:443 --publish 8090:80  --publish 8022:22  --name gitlab   --restart always --hostname 127.0.0.1  -v /Users/mac/software/gitlab/etc:/etc/gitlab -v /Users/mac/software/gitlab/logs:/var/log/gitlab  -v /Users/mac/software/gitlab/data:/var/opt/gitlab -v /etc/localtime:/etc/localtime:ro --privileged=true registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh  
-    
-    启动完以后 页面无法正常访问，我该如何排查
+   <!-- 原版 -->
+   sudo docker run --detach --publish 8443:443 --publish 8090:80  --publish 8022:22  --name gitlab   --restart always --hostname 127.0.0.1  -v /Users/mac/software/gitlab/etc:/etc/gitlab -v /Users/mac/software/gitlab/logs:/var/log/gitlab  -v /Users/mac/software/gitlab/data:/var/opt/gitlab -v /etc/localtime:/etc/localtime:ro --privileged=true registry.cn-hangzhou.aliyuncs.com/lab99/gitlab-ce-zh  
+
+   启动完以后 页面无法正常访问，我该如何排查
 
 
     ## 安装针对mac M2,m1版本的镜像
@@ -204,7 +97,80 @@ ORDER BY date;
 
 请注意，这个查询假设您的`caputure_time`字段是一个时间戳或日期时间类型的列。如果不是，您可能需要先将该字段转换为适当的类型再进行这些操作。
 
-## npm 
+
+
+# vue 学习[包含es6语法]
+
+## vue 常用词汇
+component
+data
+methods 
+template 
+$emit
+increment
+v-on  简写 @
+v-bind 简写:
+
+fillte
+
+## vue 数据示范
+
+Vue 构造器中有一个el 参数，它是 DOM 元素中的 id
+data 用于定义属性，实例中有三个属性分别为：site、url、alexa。
+methods 用于定义的函数，可以通过 return 来返回函数值。
+{{ }} 用于输出对象属性和函数返回值。
+
+```vue
+var data={site:'测试',url:"www.qian.com",site:"千"}
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            message:"hello",
+            url:"www.example.com",
+            site:"百度"
+        },
+        methods:{
+            details:function(){
+                return this.site+"学的不是技术,是梦想"
+            }
+        }
+    }
+    )
+```
+
+
+
+## vue 基本语法
+
+### v-if
+
+#### v-elseif
+
+#### v-else
+
+### v-show
+
+### v-on [简写为@]
+
+### v-bind [简写为:]
+
+### V-html [渲染原生html文件]
+
+### v-model [适用于表单输入框]
+
+## vue 路由
+
+https://unpkg.com/vue-router/dist/vue-router.js
+## 下载相关js数据
+`wget https://unpkg.com/vue-router/dist/vue-router.js`
+
+
+## 
+
+
+
+
+## npm  [工具的使用]
 
 build   项目构建webpack 代码
 
@@ -461,6 +427,34 @@ node es6mokuaiimport.js
 ```
 
 请注意，使用 ECMAScript 模块在 Node.js 中仍然是实验性的，未来版本中的行为可能会发生变化。
+
+
+
+
+```javascript
+this.$emit('my-event', payload1, payload2, ...)
+```
+
+在上述代码中，`'my-event'` 是自定义事件的名称，`payload1`、`payload2` 等是可选的数据，可以传递给监听这个事件的处理器。
+
+在你给出的代码示例中，`button-counter` 组件在被点击时会触发一个名为 `'increment'` 的事件：
+
+```javascript
+increHandler:function(){
+    this.counter += 1
+    this.$emit('increment')
+}
+```
+
+然后，在父组件中，可以使用 `v-on` 指令（或其缩写 `@`）来监听这个事件，并指定一个处理器：
+
+```html
+<button-counter @increment="ins"></button-counter>
+```
+
+在这个例子中，当 `increment` 事件发生时，会调用 `ins` 方法，该方法将总数 `total` 增加 1。
+
+总的来说，`$emit` 是 Vue.js 中实现自定义事件和组件间通信的关键工具。
 
 ## Es6
 
