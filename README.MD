@@ -570,3 +570,39 @@ p1.then(function(value){console.log(value)});
 这段代码中的一个重要点是，即使 `reject` 函数被调用，但是由于 `resolve` 函数先被调用，Promise 的状态已经改变，因此 `reject` 的调用不会改变 Promise 的状态。这就是为什么这段代码会输出 `success2` 和 `success3`，而不是抛出任何错误的原因。
 ````
 
+
+这个错误信息表明你的文件`router.config.js`在第26行存在尾随空格。ESLint规则`no-trailing-spaces`不允许行尾有空格。
+
+### 解决方案
+
+你可以手动修复这个问题，也可以使用ESLint的`--fix`选项自动修复。
+
+#### 手动修复
+
+1. 使用代码编辑器打开文件`router.config.js`。
+2. 跳转到第26行。
+3. 删除该行末尾的任何空格。
+4. 保存文件。
+
+#### 自动修复
+
+运行以下命令：
+
+```
+./node_modules/.bin/eslint --fix /Users/mac/vue/ffmpeg/frontend/my-project/src/config/router.config.js
+```
+
+此命令告诉ESLint自动修复指定文件中可以修复的问题。
+
+### 防止未来的问题
+
+为了防止未来出现这样的问题，你可以配置你的代码编辑器在保存文件时自动删除尾随空格。例如，在Visual Studio Code中，你可以添加以下设置：
+
+```json
+{
+    "files.trimTrailingWhitespace": true
+}
+```
+
+此外，建议在提交代码或作为CI过程的一部分时运行你的linter，以便在代码被提交或推送到你的仓库之前捕获这些问题。Husky和lint-staged等工具可能对此有所帮助。
+
