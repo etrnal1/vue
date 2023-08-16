@@ -21,3 +21,8 @@ items['mod'] =math
 nums =[1,2,3,4]
 items['append'] = nums.append
 print(items)
+print("调用函数........")
+print(items['func'](-45))
+print("math 函数.....")
+print(items['mod'].sqrt(4))
+#
