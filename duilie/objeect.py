@@ -25,4 +25,23 @@ print("调用函数........")
 print(items['func'](-45))
 print("math 函数.....")
 print(items['mod'].sqrt(4))
-#
+#Python 中的所有内容都是头等性的,可以利用该特性来编写紧凑和额灵活的代码
+
+line='ACME,100,490.10'
+column_types=[str,int,float]
+parts = line.split(',')
+print(line)
+row= [ty(val) for ty,val in zip(column_types,parts)]
+print(row)
+
+## 字典示例
+_formats={
+    'text':'TextFormatter',
+    'csv':'CSVFormatter',
+    'html':'HTMFormatter'
+}
+
+if format in _formats:
+    formatter=_formats[format]()
+else:
+    raise RuntimeError('Bad Format')
