@@ -40,7 +40,6 @@ _formats={
     'csv':'CSVFormatter',
     'html':'HTMFormatter'
 }
-
 if format in _formats:
     formatter=_formats[format]()
 else:
