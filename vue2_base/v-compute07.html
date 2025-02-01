@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>v-for computer 属性</title>
-    <script src="vue.min.js"></script>
+    <script src="./vue.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -74,9 +74,10 @@
                 
                 // 再次调用 getter 读取更新后的 site
                 console.log(this.site)
-                ```
+               
                 
-                所以调用方式和普通属性无异,但通过定义 getter 和 setter 实现了自定义的读取和设置逻辑。`
+                所以调用方式和普通属性无异,但通过定义 getter 和 setter 实现了自定义的读取和设置逻辑。
+                 ```
             },
             computed:{
                 reversedMessage:function(){

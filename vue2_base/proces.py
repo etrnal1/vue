@@ -1,7 +1,7 @@
 import subprocess
 try:
     pass
-    out=subprocess.check_output(['netstat','-a']) 
+    out=subprocess.check_output(['ps','-a']) 
     text=out.decode('utf-8')
     print(text)
 except Exception as e:
